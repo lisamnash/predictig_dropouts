@@ -12,37 +12,10 @@ import time
 
 #helper functions below
 #===================================
-def assign_tf_val(col):
-    #This function assigns an integer to the 't'/'f' strings
-    col_vals = col.values
-    new_ar = []
-    for jk in range(len(col_vals)):
-        val = col_vals[jk]
-        if val == 'Y':
-            new_ar.append(True)
-        elif val == 'N':
-            new_ar.append(False)
-        else:
-            new_ar.append(val)
-    return new_ar
-
-def first_char(col):
-    col_vals = col.values
-    new_ar = []
-    for jk in range(len(col_vals)):
-        val = col_vals[jk]
-        val = val[0][0]
-        new_ar.append(val)
-    return np.array(new_ar)
-
 def convert_ac_year(df, return_df = False):
     '''converts to spring year'''
     col_vals = df['academic_year'].values
-    new_ar = []
-    for jk in range(len(col_vals)):
-        val = int(col_vals[jk].split('-')[1])
-        new_ar.append(val)
-        
+    new_ar = [int(val.split('-')[1]) for val in col_vals]
     if return_df:
         df['academic_year'] = new_ar
         return df
