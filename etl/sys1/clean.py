@@ -12,6 +12,24 @@ import time
 
 #helper functions below
 #===================================
+def tf_translate(val):
+    if val == 'Y':
+        translated = True
+    elif val == 'N':
+        translated = False
+    else:
+        translated = val
+    return translated
+
+def assign_tf_val(col):
+    col_vals = col.values
+    new_ar = [tf_translate(val) for val in col_vals]
+    return new_ar
+
+def first_char(col):
+    col_vals = col.values
+    return np.array([val[0][0] for val in col_vals])
+
 def convert_ac_year(df, return_df = False):
     '''converts to spring year'''
     col_vals = df['academic_year'].values
